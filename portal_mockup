@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trust Reimbursement Portal Mockup</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d9dee8;
+      --primary: #1f4f7a;
+      --primary-dark: #173d5f;
+      --accent: #e9f3fb;
+      --warning: #fff6df;
+      --warning-line: #e4b84b;
+      --success: #eaf7ef;
+      --success-line: #4da66d;
+      --danger: #f9e8e8;
+      --danger-line: #c55c5c;
+      --shadow: 0 10px 30px rgba(31, 41, 55, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(120deg, #153a5b, #23628f);
+      color: #fff;
+      padding: 26px 32px;
+    }
+
+    .topbar {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand strong {
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand span {
+      color: rgba(255,255,255,0.78);
+      font-size: 0.92rem;
+    }
+
+    .user-pill {
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.12);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 28px auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.85fr);
+      gap: 24px;
+    }
+
+    .hero {
+      grid-column: 1 / -1;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .status-card {
+      background: var(--accent);
+      border: 1px solid #cce2f3;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .status-card .label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .status-card strong {
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 5px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+    }
+
+    .section-note {
+      color: var(--muted);
+      margin: 0 0 18px;
+      font-size: 0.95rem;
+    }
+
+    .alert {
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      border: 1px solid;
+      font-size: 0.94rem;
+    }
+
+    .alert.warning {
+      background: var(--warning);
+      border-color: var(--warning-line);
+    }
+
+    .alert.success {
+      background: var(--success);
+      border-color: var(--success-line);
+    }
+
+    .alert.danger {
+      background: var(--danger);
+      border-color: var(--danger-line);
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: -2px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 13px;
+      font: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 116px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .upload-zone {
+      border: 2px dashed #b7c4d5;
+      background: #f9fbfe;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .upload-zone strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .fake-files {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .file-chip {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .secondary {
+      background: #eef2f6;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 24px;
+      align-content: start;
+    }
+
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .bubble {
+      height: 34px;
+      width: 34px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      border: 1px solid #cce2f3;
+    }
+
+    .steps strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .steps span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .report-preview {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .report-header {
+      padding: 14px 16px;
+      background: #f0f4f8;
+      border-bottom: 1px solid var(--line);
+      font-weight: 800;
+    }
+
+    .report-body {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+
+    .report-line {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 10px;
+      border-bottom: 1px solid #edf0f4;
+      padding-bottom: 10px;
+    }
+
+    .report-line:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .report-line span:first-child {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .approval-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .approval-box div {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: #fbfcfe;
+    }
+
+    .confirmation {
+      grid-column: 1 / -1;
+      display: none;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border-left: 6px solid var(--success-line);
+    }
+
+    .confirmation.show {
+      display: block;
+    }
+
+    .confirmation h2 {
+      margin: 0 0 6px;
+    }
+
+    .confirmation p {
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .timeline div {
+      background: #f7fafc;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .timeline strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .timeline span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    footer {
+      max-width: 1180px;
+      margin: -30px auto 40px;
+      padding: 0 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 920px) {
+      main,
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .row,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <strong>Trust Beneficiary Reimbursement Portal</strong>
+        <span>Submit one-time expenses for fiduciary review</span>
+      </div>
+      <div class="user-pill">Signed in as: Beneficiary Name</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Request reimbursement for an expense outside your regular allowance.</h1>
+        <p>
+          Use this portal for unexpected or one-off expenses that are not covered by your existing monthly or bi-weekly living expense allowance. Upload supporting receipts, invoices, or bills and explain why the expense requires separate trustee review.
+        </p>
+      </div>
+      <div class="status-card">
+        <div class="label">Typical review timing</div>
+        <strong>3 business days</strong>
+        <span>Funding may take an additional 1–2 business days after approval.</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>New Reimbursement Request</h2>
+      <p class="section-note">Complete each section before submitting. Your request will be bundled into a report and emailed to your trust advisor.</p>
+
+      <div class="alert warning">
+        <strong>Before you submit:</strong> One-time reimbursement requests generally require up to <strong>3 business days</strong> for review and decision. If approved, funds may take an additional <strong>1–2 business days</strong> to reach your bank account.
+      </div>
+
+      <form id="requestForm">
+        <div class="row">
+          <div class="field">
+            <label for="beneficiary">Beneficiary</label>
+            <input id="beneficiary" value="Beneficiary Name" />
+          </div>
+          <div class="field">
+            <label for="trust">Trust / Account</label>
+            <select id="trust">
+              <option>Family Trust ending in 1234</option>
+              <option>Supplemental Needs Trust ending in 5678</option>
+              <option>Education Trust ending in 9012</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="amount">Requested Reimbursement Amount</label>
+            <input id="amount" value="$725.40" />
+          </div>
+          <div class="field">
+            <label for="category">Expense Category</label>
+            <select id="category">
+              <option>Medical / Dental / Vision</option>
+              <option>Housing / Repairs</option>
+              <option>Transportation</option>
+              <option>Education</option>
+              <option>Other Necessity</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="description">Expense Description</label>
+          <input id="description" value="Emergency medical bill for broken arm treatment" />
+          <div class="hint">Briefly identify what the expense is and who charged it.</div>
+        </div>
+
+        <div class="field">
+          <label for="reason">Why is this outside your regular allowance?</label>
+          <textarea id="reason">This was an unplanned medical expense from a broken arm. It was not part of my normal monthly living expenses, and I was not financially prepared to cover it from my regular allowance.</textarea>
+          <div class="hint">Explain why the expense was unexpected, necessary, and not something covered by your regular monthly or bi-weekly support.</div>
+        </div>
+
+        <div class="field">
+          <label for="urgency">Is this time-sensitive?</label>
+          <select id="urgency">
+            <option>No — standard review timing is acceptable</option>
+            <option>Yes — payment is due within 7 days</option>
+            <option>Yes — service may be interrupted or collections may begin</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Upload receipts, invoices, or bills</label>
+          <div class="upload-zone">
+            <strong>Drag files here or click to upload</strong>
+            <span class="hint">Accepted formats: PDF, JPG, PNG. Include all pages of the invoice or receipt.</span>
+            <div class="fake-files">
+              <div class="file-chip"><span>medical-bill.pdf</span><span>Uploaded</span></div>
+              <div class="file-chip"><span>payment-receipt.jpg</span><span>Uploaded</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="notes">Additional notes for your trust advisor</label>
+          <textarea id="notes" placeholder="Optional"></textarea>
+        </div>
+
+        <div class="alert danger">
+          <strong>Certification:</strong> By submitting this request, you certify that the information provided is accurate and that the expense has not already been reimbursed or paid from another source.
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary">Submit for Review</button>
+          <button type="button" class="secondary">Save Draft</button>
+          <button type="button" class="secondary">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="sidebar">
+      <section class="card">
+        <h2>How the review works</h2>
+        <p class="section-note">This request is routed to your assigned trust advisor for fiduciary review.</p>
+        <ol class="steps">
+          <li>
+            <div class="bubble">1</div>
+            <div>
+              <strong>Submit request</strong>
+              <span>You upload receipts and explain why the item falls outside your regular allowance.</span>
+            </div>
+          </li>
+          <li>
+            <div class="bubble">2</div>
+            <div>
+              <strong>Advisor review</strong>
+              <span>The request is bundled into a report and emailed to the trust advisor.</span>
+            </div>
+          </li>
+          <li>
+            <div class="bubble">3</div>
+            <div>
+              <strong>Decision or follow-up</strong>
+              <span>The advisor may approve, deny, or request more information.</span>
+            </div>
+          </li>
+          <li>
+            <div class="bubble">4</div>
+            <div>
+              <strong>Payment processing</strong>
+              <span>If approved, funds are sent to the bank account on file.</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Advisor Email / PDF Preview</h2>
+        <p class="section-note">Mockup of the internal report created after submission.</p>
+
+        <div class="report-preview">
+          <div class="report-header">Reimbursement Review Packet</div>
+          <div class="report-body">
+            <div class="report-line">
+              <span>Beneficiary</span>
+              <strong>Beneficiary Name</strong>
+            </div>
+            <div class="report-line">
+              <span>Trust Account</span>
+              <strong>Family Trust ending in 1234</strong>
+            </div>
+            <div class="report-line">
+              <span>Amount</span>
+              <strong>$725.40</strong>
+            </div>
+            <div class="report-line">
+              <span>Category</span>
+              <strong>Medical / Dental / Vision</strong>
+            </div>
+            <div class="report-line">
+              <span>Reason</span>
+              <strong>Unplanned medical expense outside regular living allowance.</strong>
+            </div>
+            <div class="report-line">
+              <span>Attachments</span>
+              <strong>2 files attached</strong>
+            </div>
+            <div class="approval-box">
+              <div>Approve</div>
+              <div>Deny</div>
+              <div>Need Info</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <section class="confirmation" id="confirmation">
+      <h2>Request submitted</h2>
+      <p>Your reimbursement request has been sent to your trust advisor for review. You will receive an email confirmation shortly.</p>
+
+      <div class="alert warning">
+        <strong>After submission:</strong> One-time expenses may take up to <strong>3 business days</strong> for a decision. Approved reimbursements may take an additional <strong>1–2 business days</strong> to deposit into your bank account.
+      </div>
+
+      <div class="timeline">
+        <div>
+          <strong>Today</strong>
+          <span>Request received and report generated.</span>
+        </div>
+        <div>
+          <strong>Within 3 business days</strong>
+          <span>Advisor approves, denies, or asks for more information.</span>
+        </div>
+        <div>
+          <strong>1–2 business days after approval</strong>
+          <span>Funds are processed to the bank account on file.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Mockup only. Final wording should be reviewed for bank policy, trustee discretion, privacy, and any account-specific trust requirements.
+  </footer>
+
+  <script>
+    const form = document.getElementById('requestForm');
+    const confirmation = document.getElementById('confirmation');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      confirmation.classList.add('show');
+      confirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</body>
+</html>
